@@ -143,3 +143,39 @@ def ola_mundo():
     print("Olá mundo")
     
 ola_mundo()
+
+
+print(40* "_")
+print("args e kwargs")
+
+def meu_decorador(funcao):
+    def envelope(*args, **kwargs):
+        print("faz algo antes de executar")
+        funcao(*args, **kwargs)
+        print("faz algo depois de executar")
+        
+    return envelope
+
+@meu_decorador
+def ola_mundo(nome):
+    print(f"Olá mundo {nome}")
+    
+ola_mundo("Guilherme")
+
+print(40*"_")
+print("retornando valores com decoradores")
+
+def duplicar(func):
+    def envelope(*args, **kwargs):
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
+    
+    return envelope
+
+@duplicar
+def aprender(tecnologia):
+    print(f"Estou aprendendo {tecnologia}")
+    return tecnologia.upper()
+
+tecnologia = aprender("python")
+print(tecnologia)
